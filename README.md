@@ -18,7 +18,7 @@ The problem is broken into three sequential Gurobi models, each one feeding its 
 | 2 | Venue & Day Scheduling | Which stadium and which day each match is played | Model 1 output |
 | 3 | Kickoff Date & Time | Exact date and hour for each match | Model 2 output |
 
-Models 1 and 2 are framed as **non-preemptive goal programming** problems. Rather than hard-constraining values like rest days or timezone shift to an exact number, target values are set (e.g. 3 days of minimum rest, 1 hour of maximum timezone shift) and deviation variables (`_plus` / `_minus`) absorb the gap above or below that target. Those deviations are then penalized in a single weighted objective function instead of being optimized in strict priority order.
+Models 1 and 2 are framed as **non-preemptive goal programming** problems. Rather than hard-constraining values like rest days or timezone shift to an exact number, target values are set (e.g. 3 days of minimum rest, 1 hour of maximum timezone shift) and deviation variables (`_plus` / `_minus`) absorb the gap above or below that target. Those deviations are then penalized in a single weighted objective function instead of being optimized in strict priority order. Model 3 takes a different approach because it minimizes a single weather-penalty objective directly, with rest requirements enforced as a hard constraint rather than a soft target.
 
 ### Model 1: Group Assignment
 
