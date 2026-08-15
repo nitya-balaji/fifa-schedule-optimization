@@ -77,7 +77,7 @@ Run the following cells in order, since each model depends on the output of the 
 5. Run Model 3. This produces the final schedule as `model3_schedule_output.csv`.
 6. Run the final weather-comparison cells to compare current vs. optimized schedules across both models.
 
-**Note:** Models 1 and 2 do not have to converge to a provably optimal solution within their time limits (both fall back to the best feasible solution found rather than requiring `OPTIMAL` status, so results can vary slightly between runs).
+**Note:** Models 1 and 2 do not have to converge to a provably optimal solution within their time limits (both fall back to the best feasible solution found rather than requiring `OPTIMAL` status, so results can vary slightly between runs). The "Example Solution" sheet in `cleaned_data.xlsx` reflects one such run and is provided as a reference, not a target to reproduce exactly.
 
 ## Tools
 
