@@ -20,7 +20,7 @@ The problem is broken into three sequential Gurobi models, each one feeding its 
 
 Models 1 and 2 are framed as **non-preemptive goal programming** problems. Rather than hard-constraining values like rest days or timezone shift to an exact number, target values are set (e.g. 3 days of minimum rest, 1 hour of maximum timezone shift) and deviation variables (`_plus` / `_minus`) absorb the gap above or below that target. Those deviations are then penalized in a single weighted objective function instead of being optimized in strict priority order.
 
-### Model 1 — Group Assignment
+### Model 1: Group Assignment
 
 Assigns all 48 teams into 12 groups of 4, subject to:
 - Each of the three host nations (Canada, Mexico, USA) is pre-seeded into its own group
@@ -29,7 +29,7 @@ Assigns all 48 teams into 12 groups of 4, subject to:
 
 The objective minimizes two things simultaneously: the spread between the strongest and weakest group averages (weighted 15x), and how far each group's internal point range deviates from the target range (weighted 1x). Solved with a 15-minute time limit and a 1% MIP gap tolerance.
 
-### Model 2 — Venue & Day Scheduling (Travel Burden)
+### Model 2: Venue & Day Scheduling (Travel Burden)
 
 Assigns each of the 72 group-stage matches to one of the 16 venues and one of 17 tournament days, minimizing total team travel distance while keeping rest and jet lag in check. Key constraints:
 
@@ -40,7 +40,7 @@ Assigns each of the 72 group-stage matches to one of the 16 venues and one of 17
 
 Goal programming targets: 3 days minimum rest between a team's matches (penalty weight 50) and a maximum 1-hour timezone shift between consecutive venues (penalty weight 100). A small negative weight on total stadium capacity in the objective nudges the solver toward larger stadiums when travel/rest/timezone costs are otherwise similar. Solved with a 30-minute time limit.
 
-### Model 3 — Kickoff Date & Time (Weather)
+### Model 3: Kickoff Date & Time (Weather)
 
 Given the venues and days from Model 2, assigns an exact date and kickoff hour to each match to minimize exposure to poor playing conditions, subject to the rest days computed in Model 2 and a limit of 8 matches per day. A weather penalty score is computed per city/date/hour combination from temperature, humidity, and precipitation:
 
