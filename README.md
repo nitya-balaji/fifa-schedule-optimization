@@ -81,4 +81,7 @@ Run the following cells in order, since each model depends on the output of the 
 
 ## Tools
 
-Python, pandas, Gurobi (gurobipy), matplotlib
+* Python 
+* pandas 
+* Gurobi (gurobipy) 
+* matplotlib
